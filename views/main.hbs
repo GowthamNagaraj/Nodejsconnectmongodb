@@ -8,13 +8,49 @@
 <body>
 
     <h1>Mongodb crud operations</h1>
+
+        {{#if edit_id}}
+
+        <div>        
+            <p>Edit Data</p>
+            <form method="post" action="/update_book/{{edit_id}}">
+                <label for="">Title</label>
+                <input type="text" placeholder="title..." name="title" value="{{edit_book.title}}">
+
+                <label for="">Author</label>
+                <input type="text" placeholder="author..." name="author" value="{{edit_book.author}}">
+        
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+        <br><br>
+
+        {{else}}
+
+        <br><br>
+        <div>        
+            <p>Create Data</p>
+            <form method="post" action="/store_book">
+                <label for="">Title</label>
+                <input type="text" placeholder="title..." name="title">
+
+                <label for="">Author</label>
+                <input type="text" placeholder="author..." name="author">
+        
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+        <br><br>
+    
+        {{/if}}
+    
     {{!-- Syntax of {{}} --}}
     {{msg}}
     
     <ul>
         {{!-- Syntax of grouping --}}
-        {{#each employess}}   
-            <li> {{this.title}} - {{this.author}} </li>
+        {{#each books}}   
+            <li> {{this.title}} - {{this.author}} <a href="/?edit_id={{this._id}}">Edit</a> <a href="/?delete_id={{this._id}}" onclick="return confirm('Are your sure want to Delete ?')">Delete</a></li>
         {{/each}}
     </ul>
 </body>
