@@ -11,5 +11,11 @@
     {{!-- Syntax of {{}} --}}
     {{msg}}
     
+    <ul>
+        {{!-- Syntax of grouping --}}
+        {{#each employess}}   
+            <li> {{this.title}} - {{this.author}} </li>
+        {{/each}}
+    </ul>
 </body>
 </html>
